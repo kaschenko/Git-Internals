@@ -1,0 +1,457 @@
+type: edu
+files:
+- name: src/gitinternals/Main.kt
+  visible: true
+  text: |
+    package gitinternals
+
+    fun main() {
+        // write your code here
+    }
+  learner_created: false
+- name: test/GitInternalsTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.Arrays;
+    import java.util.List;
+
+    class CheckFailException extends Exception {
+        public CheckFailException(String s) {
+            super(s);
+        }
+    }
+
+
+    public class GitInternalsTest extends StageTest<List<String>> {
+
+        @Override
+        public List<TestCase<List<String>>> generate() {
+
+            return Arrays.asList(
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "cat-file\n" +
+                                    "0eee6a98471a350b2c2316313114185ecaf82f0e\n")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "Enter git object hash:",
+                                    "*COMMIT*",
+                                    "tree: 79401ddb0e2c0fe0472c813754dd4a8873b66a84",
+                                    "parents: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0",
+                                    "author: Smith mr.smith@matrix original timestamp: 2020-03-29 17:18:20 +03:00",
+                                    "committer: Cypher cypher@matrix commit timestamp: 2020-03-29 17:25:52 +03:00",
+                                    "commit message:",
+                                    "get docs from feature1")),
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "cat-file\n" +
+                                    "490f96725348e92770d3c6bab9ec532564b7ebe0\n")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "Enter git object hash:",
+                                    "*BLOB*",
+                                    "fun main() {",
+                                    "    while(true) {",
+                                    "        println(\"Hello Hyperskill student!\")",
+                                    "    }",
+                                    "} ")),
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "cat-file\n" +
+                                    "fb043556c251cb450a0d55e4ceb1ff35e12029c3\n")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "Enter git object hash:",
+                                    "*TREE*",
+                                    "100644 2b26c15c4375d90203783fb4c2a45ff4b571a6 main.kt",
+                                    "100644 4a8abe7b618ddf9c55adbea359ce891775794a61 readme.txt")),
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "list-branches\n")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "  feature1",
+                                    "  feature2",
+                                    "* master")),
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "log\n" +
+                                    "master")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "Enter branch name:",
+                                    "Commit: fd362f3f305819d17b4359444aa83e17e7d6924a",
+                                    "Neo neo@matrix commit timestamp: 2020-04-04 11:42:08 +03:00",
+                                    "add subfolder",
+                                    "",
+                                    "Commit: 39a0337532d7720acc90497043e2ade92c386939",
+                                    "Neo neo@matrix commit timestamp: 2020-04-04 09:59:23 +03:00",
+                                    "this commit message will have multiple lines",
+                                    "we need multiple lines commit message for test purposes",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "",
+                                    "Commit: 6d537a47eddc11f866bcc2013703bf31bfcf9ed8",
+                                    "Cypher cypher@matrix commit timestamp: 2020-03-29 17:29:08 +03:00",
+                                    "Merge branch 'feature2'",
+                                    "",
+                                    "Commit: 31d679c1c2b8fc787ae014c501d4fa6545faa138",
+                                    "Neo neo@matrix commit timestamp: 2020-03-29 17:21:48 +03:00",
+                                    "Merge branch 'feature1'",
+                                    "",
+                                    "Commit: 4107cf41cf55c4fd38e9da8f3d08d1eaefc3254a",
+                                    "Neo mr.anderson@matrix commit timestamp: 2020-03-29 17:13:44 +03:00",
+                                    "continue work",
+                                    "",
+                                    "Commit: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0",
+                                    "Neo mr.anderson@matrix commit timestamp: 2020-03-29 17:12:52 +03:00",
+                                    "start kotlin project",
+                                    "",
+                                    "Commit: 73324685d9dbd1fdda87f3c5c6f77d79c1b769c2",
+                                    "Neo mr.anderson@matrix commit timestamp: 2020-03-29 17:10:52 +03:00",
+                                    "initial commit")),
+                    new TestCase<List<String>>()
+                            .setInput(
+                                    "test\n" +
+                                    "log\n" +
+                                    "feature2")
+                            .setAttach(Arrays.asList(
+                                    "Enter .git directory location:",
+                                    "Enter command:",
+                                    "Enter branch name:",
+                                    "Commit: 97e638cc1c7135580c3ff93162e727148e1bad05",
+                                    "Cypher cypher@matrix commit timestamp: 2020-03-29 17:27:35 +03:00",
+                                    "break our software",
+                                    "",
+                                    "Commit: 0eee6a98471a350b2c2316313114185ecaf82f0e",
+                                    "Cypher cypher@matrix commit timestamp: 2020-03-29 17:25:52 +03:00",
+                                    "get docs from feature1",
+                                    "",
+                                    "Commit: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0",
+                                    "Neo mr.anderson@matrix commit timestamp: 2020-03-29 17:12:52 +03:00",
+                                    "start kotlin project",
+                                    "",
+                                    "Commit: 73324685d9dbd1fdda87f3c5c6f77d79c1b769c2",
+                                    "Neo mr.anderson@matrix commit timestamp: 2020-03-29 17:10:52 +03:00",
+                                    "initial commit"))
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, List<String> expectedOutput) {
+            List<String> lines = Arrays.asList(reply.split("(\\r\\n|\\r|\\n)"));
+
+            if (lines.size() != expectedOutput.size()) {
+                return CheckResult.wrong(String.format(
+                        "Number of lines in your output (%d) does not match expected value(%d)",
+                        lines.size(), expectedOutput.size()));
+            }
+
+            for (int i = 0; i < lines.size(); i++) {
+                if (!lines.get(i).equals(expectedOutput.get(i))) {
+                    return CheckResult.wrong(String.format(
+                            "Output text at line (%d) (%s) does not match expected (%s)",
+                            i, lines.get(i), expectedOutput.get(i)));
+                }
+            }
+
+
+            return CheckResult.correct();
+        }
+    }
+  learner_created: false
+- name: test/objects/0e/ee6a98471a350b2c2316313114185ecaf82f0e
+  visible: false
+  text: eAFdjk1qAzEMRrv2KbQvFMmW/yCEQo7QE2hkTScLd4LjQHP7pqGrrt63ebxP997PEzyllznMIFdGam1B84qrIWevhUKO3BpLKTksKUlhd5FhXxPIC2fKVniJxsRrDaqVVCJKalGShpiCoJPb3PYBH4/aBoc+3q6/673LHOfvI1AskStFRHjFgOj0eWzagNP9sj1w0Cf/GzX6P8N92oS26xXWsXdYTeZtGLkfjEVDfg==
+  learner_created: false
+- name: test/objects/10/9e8050b41bd10b81be0a51a5e67327f5609551
+  visible: false
+  text: eAErKUpNVTA0NGQwNDAwMzFRyE3MzNPLLmHQVjsYw2IeO0HBvPm3j5brf5athcugSopSE1NyU/VKKkoYvpVsvbzk2LmvjdF+Re/1Fu5+kl2RbWIABArF+bmpumn5OSmpRQwlkj0tc3efDbyQcHRS8JLSurc79woBACxgMHU=
+  learner_created: false
+- name: test/objects/12/a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+  visible: false
+  text: eAGVzk0KAjEMQGHXPUX2gvRnpmlBxBN4hzZNcdROhxrB4yvewP374FFvbRGwBncymCFhDsHmXG3Jc4naBuSYaiVkX112hJPOzqLa0uBVAJ2zkw/ftORiaikpYHU0k6+IBSOZjD6SVekl1z7gwh2ObRzSWng8+3puScbyPoGZwzxFY9DCXjutFf3OhP8x6ilpCNy7PJYVttFvTKI+4SZFww==
+  learner_created: false
+- name: test/objects/2b/26c15c04375d90203783fb4c2a45ff04b571a6
+  visible: false
+  text: eAFLyslPUjA1Z0grzVPITczM09BUqOZSAIKCosy8kpw8DSWP1JycfAWPyoLUouLszJwcheKS0pTUvBJFJU2uWgUuAJ8aFIA=
+  learner_created: false
+- name: test/objects/30/0b1c67b5539bfdcb30f2863d6ac3b3377ad00b
+  visible: false
+  text: eAGVjkEOwiAQRV33FLN3AzOFlsQYL+AhKAxpYwCDQ/T4VuMF3Pz8zXt5oea8CSDpgzRm4KicIoxBB4zaGpVmJCYinCc7zhSRnUWThrtvXARGsgl5GtUHMaNDjGmhZIwmq8yyGCZ26MLgu6y1wbW2+8r9Aaf8e5fspW2vM2gz74J9HRwVKTWEb5vwf9SOFdlKZ3jWdoNaINbQ8x7rZatleAPOcEoy
+  learner_created: false
+- name: test/objects/31/d679c1c2b8fc787ae014c501d4fa6545faa138
+  visible: false
+  text: eAGNz0FqAzEMQNGsfQrvsshGsqyxB0rpBdo7yLKUZDEzxTjQ4zcUus/+8eHrsW33GROn0xxm0RtkYl40MWrLDAKd2bJaQ3diwwRpVQrfMmyfMSMU9YzqzJq9U7W1S3XqUDuamCslzvLvCaChLqUx09q8ayPwVBfqiyg1olKkP02Qx7wdI37ZEd92Oz42meP+8x6RK+cVC9R4gWct6N/BtFds+LRxtdiG7HqLZzeZj2F4Dr+yv00R
+  learner_created: false
+- name: test/objects/41/07cf41cf55c4fd38e9da8f3d08d1eaefc3254a
+  visible: false
+  text: eAGVzlEKwjAMAFC/d4r+C9KkydaCiCfwDlkacchaqR16fMUbeIAHT+u6Lt0h+F1vZs4iZMrR5xQSgmK0FDkh65gJZ5oJc5w46vCQZqU7QKEJJos0sxHQNQXVBCrsZcwsowYeg/hBtn6rzV2suuPaDlKytWct51V6W94nBxyZEiCS2/vg/aC/Wbd/zBeVvpTN3Ku2+/AB40NBbg==
+  learner_created: false
+- name: test/objects/43/6f2e7402dc154922dfb3f5513605bb5e3e929c
+  visible: false
+  text: eAGVjkEOwiAQAD3zir2bGApdCokx/sEXLLuQckAM0qTPt/oDb3OZzHCrtQwwkzmNnhJEZzyJYJY5JhtFDEtcFieZtEVmFwI6j0G9qKfnAO+cz8kbyRajXYI20U2ByRzkM2HgOTi0RtE21tbhcdRWuNZ+eX/pXmn0st9gQo9zmFBrOGurteLf2Eh/KCqXHaTxVo8zGqU91Qc0okM+
+  learner_created: false
+- name: test/objects/49/0f96725348e92770d3c6bab9ec532564b7ebe0
+  visible: false
+  text: eAFLyslPUrAwZUgrzVPITczM09BUqOZSAILyjMycVI2SotJUmAhItKAoM68kJ09DySM1JydfwaOyILWoODszJ0ehuKQ0JTWvRFFJE6y9lqtWgQsADocbVw==
+  learner_created: false
+- name: test/objects/4a/8abe7b618ddf9c55adbea359ce891775794a61
+  visible: false
+  text: eAFLyslPUjA2ZUjLLCouUcjJzEvlKk5Nzs9LgbBLMjKLIEwFLgBApg59
+  learner_created: false
+- name: test/objects/4e/33b9879a28ce8462b599fda71625f717ec8b8b
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYfjXaitvmLUl/XLoz3seEpoRFdymW6FKilITU3JT9UoqShhWVHnxzT8f1cUpEzJhdrrXoQWBX18AAF41Hho=
+  learner_created: false
+- name: test/objects/61/8383db6d7ee3bd2e97b871205f113b6a3ba854
+  visible: false
+  text: eAFLyslPUjA0YfBIzcnJVyjPL8pJUVTgAgBQEgas
+  learner_created: false
+- name: test/objects/6d/537a47eddc11f866bcc2013703bf31bfcf9ed8
+  visible: false
+  text: eAGNj7FqQzEMRTv7K7xl6GLJli1DKIXO/QhZlvsyvCQYB9q/7yPQvdNdzuFw9bbvl+Uxp5c1zbxCRq6NUkgNMDOMIdUYTELBFFEISDp3d5dp1+Uj9FyqgmLjoYWLWICkFKCnIZkSDRGI/MfXYjmyHkKBSMRB4xg1HlUrWCCxQZMeyMljbbfpP37um01/1ue+77Lm5fvNAzGligfvX0MMwenzxzrQ/xru0+aX+Tblqps/DZP1mIYn9wu8UVCB
+  learner_created: false
+- name: test/objects/73/324685d9dbd1fdda87f3c5c6f77d79c1b769c2
+  visible: false
+  text: eAGVzV0KAiEQAOCePcW8BzGuujkQsSfoDuMfCangTtDxg/YEHeDji6O1KqBXc5KZM3Ay7LVP0V8DkUUyLiyWHTOZwhGxoF9DIcVveY4Jjzzg1uaFe8pzH31rLLN+7qCdd5Y0ugXOaBBV/E2S/zGq9iqVX3Bg9QUazTUA
+  learner_created: false
+- name: test/objects/74/198c849dbbcd51d060c59253a4757eedb9bd12
+  visible: false
+  text: eAErKUpNVTA2YTA0MDAzMVEoLNQrqShhaD4jyTnZfZLvoo4JzV1Xn8241cqyGAAhHRBB
+  learner_created: false
+- name: test/objects/75/1543c76e07eeb88c1ef5ed5a0a0b15a2f9f875
+  visible: false
+  text: eAFLyslPUrAwY0jLLCouUcjJzEvlsoEABQ9XRxeu4tTk/LwUiERJRmYRhKnAZQsByPIKXHYQoJCWmlhSWpRqxAUAVPIcgA==
+  learner_created: false
+- name: test/objects/79/401ddb0e2c0fe0472c813754dd4a8873b66a84
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYVijbvhOxXqjoOxNS7HdRtPe1dcpv4cqKUpNTMlN1SupKGFYUeXFN/98VBenTMiE2elehxYEfn0BAE4WHhA=
+  learner_created: false
+- name: test/objects/86/68fe82df35b37902b619ca29028fa59c496532
+  visible: false
+  text: eAGVjkEOwiAQRV1zCvYmBpjSgcQY7+AJpsyQdkExSBOPL3oDd3/x//sv1VK2rp11p95EtFh0CCRgF/TAxDaLFzGSQXzAQM4uDDmqJzXZu0YAN83Bc+RldJkpYIbk05wRGWManDkmp+joa236Md5WfS3t8vqme6HetvdNWx/8FO3koz4bMEaln1iXPyaKmDXXdJRhRn2ru/oAdkZD7w==
+  learner_created: false
+- name: test/objects/97/e638cc1c7135580c3ff93162e727148e1bad05
+  visible: false
+  text: eAGNjksKwjAQQF3nFLN3k8l3AiKCJ5nECS1SIzFFvb2lJ3D1Nu/BK21Z5gEG8TC6CDixNieKiQ0VIRdM9inVG0cMxteIUQplyurJXR4DtIgETuQisvU6m2IsBosW0SF5KVzJVC2K1zG1Dtfvc5IOp7LzsvDo8+cM6Mm7ZLT3cNRWa1X2r7Gp/xYqd+E7tLXDq9Xx3v7UD1rSQkA=
+  learner_created: false
+- name: test/objects/a7/b882bbf2db5d90287e9affc7e6f3b3c740b327
+  visible: false
+  text: eAErKUpNVTA2ZTA0MDAzMVHITczM08suYVijbvhOxXqjoOxNS7HdRtPe1dcpvwcAHYQPEg==
+  learner_created: false
+- name: test/objects/a8/7a4a0e9fcf5a8a091c54909b674ac2a051f5e8
+  visible: false
+  text: eAFLyslPUjAyYUjLLCouUcjJzEvlKk5Nzs9LAbMVuACv/gqO
+  learner_created: false
+- name: test/objects/ac/2731ee243bb1111dd93916bb3296ee7f7e23ef
+  visible: false
+  text: eAFLyslPUjAxZkgrzVPITczM09BUqOZSAIKCosy8kpw8DSWP1JycfIXy/KKcFCVNrloFLgCPtA80
+  learner_created: false
+- name: test/objects/ad/3a818dc87b9940935b24a5aa93fac00f086bf9
+  visible: false
+  text: eAErKUpNVTA2ZTA0MDAzMVHITczM08suYTh0o+NNPdt26bgThdosKRdPVXHN/wMANu0Qgw==
+  learner_created: false
+- name: test/objects/b6/28add5fd4be3bdd2cdb776dfa035cc69956859
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYTh0o+NNPdt26bgThdosKRdPVXHN/wNVUpSamJKbqldSUcKwosqLb/75qC5OmZAJs9O9Di0I/PoCAJ5FH4E=
+  learner_created: false
+- name: test/objects/c1/6289b5404b12681ffa9e81ea072432a515ad8d
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYfDkn1YU7PFSveDysV073wSrpmx//QCqpCg1MSU3Va+kooThW8nWy0uOnfvaGO1X9F5v4e4n2RXZANYxIr4=
+  learner_created: false
+- name: test/objects/c2/d888ec7f06b71b5ec8712b0464d1ca7a0a9ffc
+  visible: false
+  text: eAFLyslPUjAyYCjPSCxRyCxWSM/PzEtXyM9TtFfgAgCCPQiN
+  learner_created: false
+- name: test/objects/da/5c94c98ad34735a539a0f90d0e9c6bba779792
+  visible: false
+  text: eAE9zMEKwjAMxnHPeYq403bUg15UEBT6GhtNbbvYjaZFRPburhb8XXLJ9x94GnB3OG5MDvjsXWg7/MCpQnW/3gBXc3QhcWgbRcwTqvdMUUbHjJKyppC2TQfn6jd4WcfUppip9Eqi+Ges9qNYLUZb1FKuPIz1Wqw3a6n8LnCp0FCfcqQ9LAhf+z40ew==
+  learner_created: false
+- name: test/objects/e1/7273ae31b753dad1fe5ee0ef3e5878a21bd3f9
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYTh0o+NNPdt26bgThdosKRdPVXHN/wNVUpSamJKbqldSUcKQ2Nx8O7fu8V696TsKFeIFrbOsV4QAAKy+Hvc=
+  learner_created: false
+- name: test/objects/e8/1d4d80d93921c28e985925c6d42b4b42d8758c
+  visible: false
+  text: eAErKUpNVTA2ZTA0MDAzMVHITczM08suYdBWOxjDYh47QcG8+bePlut/lq2FywARVA4v
+  learner_created: false
+- name: test/objects/ed/09032dc1c2d1650f823e3332876483d2e9625f
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYTh0o+NNPdt26bgThdosKRdPVXHN/wNVUpSamJKbqldSUcLg1bWvOrH3/pzQtfsWR57rFC+t9EoEALNhIAk=
+  learner_created: false
+- name: test/objects/f6/74b5d3a4c6cef5815b4e72ef2ea1bbe46b786b
+  visible: false
+  text: eAFLyslPUjAxZ0jLLCouUcjJzEvlKk5Nzs9LgbBLMjKLIEwFFHEADW8Szg==
+  learner_created: false
+- name: test/objects/fb/043556c251cb450a0d55e4ceb1ff35e12029c3
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYdBWOxjDYh47QcG8+bePlut/lq2Fy6BKilITU3JT9UoqShi8uvZVJ/benxO6dt/iyHOd4qWVXokANVAdtQ==
+  learner_created: false
+- name: test/objects/fd/362f3f305819d17b4359444aa83e17e7d6924a
+  visible: false
+  text: eAGNzsENwjAMAEDemcJ/Pk5cN7GEEBOwg5O4ohJtUEglxkdiAv73uNK2bR3gZTqNbgYexRIy5snn6jEnnw2VvbLNkUJceEZh9u6l3fYBJIpEkSnUGANqKYKTRJzIglaTUCjNQuL0GI/W4W4NLru126ajr58reE4sSWJIcEZCdOU3GvaPdVorvI+8tGe17r4UezoW
+  learner_created: false
+- name: test/objects/fe/853d1f316ab467d355f9de48182958780b35b5
+  visible: false
+  text: eAE1jDEOgCAMAJ15RcMEP/A7klILIhoKcTD8XTHxlktuOJcOB/M8UcuwLyEbC7eCl4tD8qaW5v8y6llCrikbzRg3YRRCBpRhWYkjCkfS9jt01UE9esAdFQ==
+  learner_created: false
+- name: test/refs/heads/master
+  visible: false
+  learner_created: false
+- name: test/refs/heads/feature1
+  visible: false
+  learner_created: false
+- name: test/refs/heads/feature2
+  visible: false
+  learner_created: false
+- name: test/HEAD
+  visible: false
+  learner_created: false
+- name: src/gitinternals/EnterCommand.kt
+  visible: true
+  text: |-
+    package gitinternals
+
+    import java.io.File
+    import java.io.FileInputStream
+    import java.util.zip.InflaterInputStream
+
+    fun listBranches() {
+        val path = """C:\Users\Ivash\IdeaProjects\Git Internals\Git Internals\task\test\refs\heads\"""
+        val file = File(path)
+        val head = getHead()
+        file.walk().forEach { if (it.name == head) println("* ${it.name}") else if (it.isFile) println("  ${it.name}") }
+    }
+    fun getHead(): String {
+        val path = """C:\Users\Ivash\IdeaProjects\Git Internals\Git Internals\task\test\HEAD"""
+        val file = File(path)
+        val decode = file.readLines()
+        val head = decode[0].substringAfterLast("/")
+        return head
+    }
+  learner_created: true
+- name: src/gitinternals/Commit.kt
+  visible: true
+  text: |-
+    package gitinternals
+
+    import java.io.FileInputStream
+    import java.time.Instant
+    import java.time.ZoneOffset
+    import java.time.format.DateTimeFormatter
+    import java.util.zip.InflaterInputStream
+
+    fun commit(ArrayS: String, type: String): String {
+        val seconds = Regex("\\d{9,20}").findAll(ArrayS)
+        val timezone = Regex("\\+\\d{4}").findAll(ArrayS)
+        var i = 0
+        var secondsList = mutableListOf<String>()
+        var timezoneList = mutableListOf<String>()
+        for (j in seconds) {
+            secondsList.add(j.value)
+            i++
+        }
+        i = 0
+        for (j in timezone) {
+            timezoneList.add(j.value)
+            i++
+        }
+        var time = Instant.ofEpochSecond(secondsList[0].toLong()).atZone(ZoneOffset.of(timezoneList[0]))
+            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss xxx"))
+        val regex = """\d{9,20}\s\+\d{4}""".toRegex()
+        val timeSecond = Instant.ofEpochSecond(secondsList[1].toLong()).atZone(ZoneOffset.of(timezoneList[1]))
+            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss xxx"))
+        var alteredArrayS = "$type\n" + regex.replaceFirst(ArrayS, time).let {
+            regex.replaceFirst(it, timeSecond)
+        }.substringAfter("\n")
+        Regex("""tree |parent |author |committer """).replace(alteredArrayS) {
+                m -> m.value.replace(" ", ": ")
+        }.also { alteredArrayS = it }
+        alteredArrayS = Regex("<").replace(alteredArrayS, "")
+        alteredArrayS = Regex(">").replaceFirst(alteredArrayS, " original timestamp:")
+        alteredArrayS = Regex(">").replaceFirst(alteredArrayS, " commit timestamp:")
+        alteredArrayS = Regex("\n\n").replace(alteredArrayS, "\ncommit message:\n")
+        alteredArrayS = alteredArrayS.replace("parent", "parents")
+
+
+        return alteredArrayS
+    }
+    fun tree(ArrayS: ByteArray) {
+        val hash: MutableList<String> = emptyList<String>().toMutableList()
+
+        for (i in 1..ArrayS.size - 1) {
+            if (ArrayS[i] == 10.toByte() ) if ((i + 21) <= ArrayS.size) {
+                hash += ArrayS.copyOfRange(i + 1, i + 21).joinToString("") { "%x".format(it) }
+            }
+        }
+        val finAllText = Regex("""( [a-z]+.?-?[a-z]+)""")
+            .findAll(ArrayS.decodeToString().substringAfter("\n"))
+        var stringsOfText = ""
+        for (i in finAllText) {
+            stringsOfText += i.value
+        }
+        var stringOfDigits = ""
+        val FindAllDigits = Regex("""\d+ """).findAll(ArrayS.decodeToString())
+        for (i in FindAllDigits) {
+            stringOfDigits += i.value
+        }
+        val fileNames = stringsOfText.split(" ").map { it.trim() }.toMutableList()
+            .filter { it.isNotBlank() }
+        val Numbers = stringOfDigits.split(" ").map { it.trim() }.toMutableList()
+            .filter { it.isNotBlank() }
+        println("*TREE*")
+        hash.removeAt(0)
+        for (i in 0 until hash.size) println("${Numbers[i]} ${hash[i]} ${fileNames[i]}")
+
+    }
+    fun getObject(input: String) {
+        println("Enter git object hash:")
+        val hashNum = readLine()!!.toString()
+        val fileName = "C:\\Users\\Ivash\\IdeaProjects\\Git Internals\\Git Internals\\task\\" +
+                "$input\\objects\\${hashNum.substring(0, 2)}\\${hashNum.substring(2, hashNum.length)}"
+        val file = FileInputStream(fileName)
+        val ArrayS = InflaterInputStream(file).readAllBytes().map { if (it == 0.toByte()) 10.toByte() else it}
+            .toByteArray()
+        val type = "*${ ArrayS.decodeToString().substringBefore(" ").uppercase() }*"
+        if (ArrayS.decodeToString().substringBefore(" ").uppercase() == "COMMIT") {
+            val commit = commit(ArrayS.decodeToString(), type)
+            println(commit)
+        } else if (ArrayS.decodeToString().substringBefore(" ").uppercase() == "TREE") {
+            val tree = tree(ArrayS)
+        } else println("$type\n" + ArrayS.decodeToString().substringAfter("\n"))
+    }
+  learner_created: true
+- name: test/objects/39/a0337532d7720acc90497043e2ade92c386939
+  visible: false
+  text: eAGNzktuxCAQhOGsOUXvswFj7EaKRjlB7tBAESP5JcCZHD+jZDerbEv1SX88tq10Gnh+6RUg7zm4LJ6zzgK2mGIYRmE2LrAfrEDSDGh1SsXeaUrOzjLOSCkak3maQoyDNnbWNmRrQo7ZI7GSqy9HpQ8c9LbjeN+k1/J9I+PYebZusvSqrdYq/hZ1/Oer+lIa/Qna0Jp8gu5lXWmRL9B2rb2cK2gtO5q6g3YgPc3PPD8qO1qn86rn0R7OqlE59QNT715t
+  learner_created: false
+- name: test/objects/99/8b5fa98f0fae83e6cb24a8815b8923aead7ee0
+  visible: false
+  text: eAErKUpNVTA3ZjA0MDAzMVHITczM08suYdBWOxjDYh47QcG8+bePlut/lq2Fy6BKilITU3JT9UoqShi+lWy9vOTYua+N0X5F7/UW7n6SXZENAE/vH+I=
+  learner_created: false
+- name: test/objects/83/cc19099347924da28890838ad5e698da8504a3
+  visible: false
+  text: eAFLyslPUjBhKCxU4AIAFOkDAA==
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/110/stages/600/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 06 Nov 2021 19:41:20 UTC
+record: 6

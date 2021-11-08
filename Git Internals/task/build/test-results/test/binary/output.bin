@@ -1,0 +1,136 @@
+[1;31m
+Start test 1[0m
+ Enter .git directory location:
+> test
+Enter command:
+> commit-tree
+Enter commit-hash
++> fd362f3f305819d17b4359444aa83e17e7d6924a
+	main.kt
+readme.txt
+some-folder/qq.txt
+[1;31m
+Start test 2[0m
+ Enter .git directory location:
+> test
+Enter command:
+> commit-tree
+Enter commit-hash
++> 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+	main.kt
+[1;31m
+Start test 3[0m
+ Enter .git directory location:
+> test
+Enter command:
+> cat-file
+Enter git object hash:
++> 0eee6a98471a350b2c2316313114185ecaf82f0e
+	*COMMIT*
+/tree: 79401ddb0e2c0fe0472c813754dd4a8873b66a84
+2parents: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+Mauthor: Smith mr.smith@matrix original timestamp: 2020-03-29 17:18:20 +03:00
+Mcommitter: Cypher cypher@matrix commit timestamp: 2020-03-29 17:25:52 +03:00
+commit message:
+get docs from feature1
+
+[1;31m
+Start test 4[0m
+ Enter .git directory location:
+> test
+Enter command:
+> cat-file
+Enter git object hash:
++> 490f96725348e92770d3c6bab9ec532564b7ebe0
+*BLOB*
+fun main() {
+    while(true) {
+-        println("Hello Hyperskill student!")
+    }
+} 
+
+[1;31m
+Start test 5[0m
+ Enter .git directory location:
+> test
+Enter command:
+> cat-file
+Enter git object hash:
++> fb043556c251cb450a0d55e4ceb1ff35e12029c3
+*TREE*
+7100644 2b26c15c4375d90203783fb4c2a45ff4b571a6 main.kt
+<100644 4a8abe7b618ddf9c55adbea359ce891775794a61 readme.txt
+[1;31m
+Start test 6[0m
+ Enter .git directory location:
+> test
+Enter command:
+> list-branches
+  feature1
+  feature2
+
+* master
+[1;31m
+Start test 7[0m
+ Enter .git directory location:
+> test
+Enter command:
+> log
+Enter branch name:
+	> master
+2Commit: fd362f3f305819d17b4359444aa83e17e7d6924a
+<Neo neo@matrix commit timestamp: 2020-04-04 11:42:08 +03:00
+add subfolder
+
+2Commit: 39a0337532d7720acc90497043e2ade92c386939
+<Neo neo@matrix commit timestamp: 2020-04-04 09:59:23 +03:00
+-this commit message will have multiple lines
+8we need multiple lines commit message for test purposes
+3
+4
+5
+
+2Commit: 6d537a47eddc11f866bcc2013703bf31bfcf9ed8
+BCypher cypher@matrix commit timestamp: 2020-03-29 17:29:08 +03:00
+Merge branch 'feature2'
+
+2Commit: 31d679c1c2b8fc787ae014c501d4fa6545faa138
+<Neo neo@matrix commit timestamp: 2020-03-29 17:21:48 +03:00
+Merge branch 'feature1'
+
+2Commit: 4107cf41cf55c4fd38e9da8f3d08d1eaefc3254a
+DNeo mr.anderson@matrix commit timestamp: 2020-03-29 17:13:44 +03:00
+continue work
+
+2Commit: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+DNeo mr.anderson@matrix commit timestamp: 2020-03-29 17:12:52 +03:00
+start kotlin project
+
+2Commit: 73324685d9dbd1fdda87f3c5c6f77d79c1b769c2
+DNeo mr.anderson@matrix commit timestamp: 2020-03-29 17:10:52 +03:00
+initial commit
+
+[1;31m
+Start test 8[0m
+ Enter .git directory location:
+> test
+Enter command:
+> log
+Enter branch name:
+> feature2
+2Commit: 97e638cc1c7135580c3ff93162e727148e1bad05
+BCypher cypher@matrix commit timestamp: 2020-03-29 17:27:35 +03:00
+break our software
+
+2Commit: 0eee6a98471a350b2c2316313114185ecaf82f0e
+BCypher cypher@matrix commit timestamp: 2020-03-29 17:25:52 +03:00
+get docs from feature1
+
+2Commit: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+DNeo mr.anderson@matrix commit timestamp: 2020-03-29 17:12:52 +03:00
+start kotlin project
+
+2Commit: 73324685d9dbd1fdda87f3c5c6f77d79c1b769c2
+DNeo mr.anderson@matrix commit timestamp: 2020-03-29 17:10:52 +03:00
+initial commit
+
